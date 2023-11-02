@@ -1,0 +1,32 @@
+{% extends "contact/base.html" %}
+
+{% block title %}問い合わせフォーム{% endblock %}
+
+{% block content %}
+<div>
+  <h1>問い合わせフォーム</h1>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+
+  <form action="{{url_for('contact.index')}}" method="POST" novalidate="novalidate">
+    <p>
+      <label for="user_name">名前：</label><input type="text" name="user_name">
+    </p>
+    <p>
+      <label for="email">メールアドレス：</label><input type="text" name="email">
+    </p>
+    <p>
+      <label for="message">内容：</label><textarea name="message" cols="40" rows="10"></textarea>
+    </p>
+    <p><button type="submit">送る</button></p>
+  </form>
+</div>
+{% endblock %}

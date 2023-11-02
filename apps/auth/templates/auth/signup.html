@@ -1,0 +1,22 @@
+{% extends "auth/base.html" %}
+
+{% block title %}ユーザー新規登録{% endblock %}
+
+{% block content %}
+<div>
+  <header>ユーザー新規登録</header>
+  <section>
+    <form method="post" action="{{ url_for('auth.signup', next=request.args.get('next')) }}">
+      {{ form.csrf_token }}
+      {% for message in get_flashed_messages() %}
+      <div>{{ message }}</div>
+      {% endfor %}
+
+      <p>{{ form.username(size=30, placeholder="ユーザー名") }}</p>
+      <p>{{ form.email(placeholder="メールアドレス") }}</p>
+      <p>{{ form.password(placeholder="パスワード") }}</p>
+      <p>{{ form.submit() }}</p>
+    </form>
+  </section>
+</div>
+{% endblock %}
